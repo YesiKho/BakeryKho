@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yesi Kho Sutrisno - 222410103007</title>
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="src/assets/css/style.css" />
 </head>
 
 <body>
@@ -39,15 +39,15 @@
                         </div>
                     </div>
                     <div class="authentication-button-wrap">
-                        <a href="./login.php">
-                            <button class="button btn-sage">Sign Up</button>
+                        <a href="./sign-in.php">
+                            <button class="button btn-primary">Sign Up</button>
                         </a>
                     </div>
                 </div>
                 <p class="text-authentication">Already have an Account <a href="./sign-in.php">Sign In</a></p>
             </div>
             <div class="image-form">
-                <img src="assets/images/cake-shop-cute.png" alt="" />
+                <img src="src/assets/images/cake-shop-cute.png" alt="" />
             </div>
         </section>
     </main>
