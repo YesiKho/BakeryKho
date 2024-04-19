@@ -5,7 +5,7 @@
                 <h1>Dashboard</h1>
             </div>
             <div class="profile-account">
-                <img src="assets/images/girl.png" alt="" />
+                <img src="src/assets/images/girl.png" alt="" />
             </div>
         </div>
     </div>

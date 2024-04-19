@@ -1,6 +1,11 @@
 <?php
-require('assets/data/cake-list.php');
-
+require_once('src/libs/products.php');
+if (isset($_GET['product_id'])) {
+    $res = Product::delete($_GET['product_id']);
+    header("refresh:2;url=index.php");
+}
+// $res = array('message' => "berhasil menghapus", "status" => 200);
+$products = Product::getAll();
 ?>
 
 <!DOCTYPE html>
@@ -10,26 +15,36 @@ require('assets/data/cake-list.php');
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yesi Kho Sutrisno - 222410103007</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="src/assets/css/style.css" />
+    <link rel="stylesheet" href="src/assets/css/output.css" />
 </head>
 
 <body>
     <main>
-        <?php include('component/sidebar.php') ?>
-        <?php include('component/navbar.php') ?>
+        <?php include('src/views/includes/sidebar.php') ?>
+        <?php include('src/views/includes/navbar.php') ?>
 
         <section class="container">
             <div class="main-content">
                 <div class="header-content">
-                    <h1>BakeryKho</h1>
+                    <h1 class="font-semibold text-xl leading-loose">BakeryKho</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae, asperiores.</p>
                 </div>
 
                 <div class="table-cake-wrap">
-                    <a href="#" class="a-wrap">
-                        <button type="button" class="button btn-sage">Tambah</button>
-                    </a>
+                    <div class="w-full flex justify-between">
+                        <div>
+                            <?php if (isset($res['message'])) : ?>
+                                <?php if ($res['status'] == 201) : ?>
+                                    <p class="max-w-[30rem] px-6 py-2 bg-info rounded-lg text-black font-medium truncate"> <?= $res['message']; ?></p>
+                                <?php endif ?>
+                            <?php endif ?>
+                        </div>
+                        <a href="./form.php" class="a-wrap">
+                            <button type="button" class="button btn-sage">Tambah</button>
+                        </a>
+                    </div>
                     <table class="table-cake">
                         <thead>
                             <tr>
@@ -43,49 +58,43 @@ require('assets/data/cake-list.php');
                         </thead>
                         <tbody>
                             <?php $i = 0 ?>
-                            <?php foreach ($cakes as $cake) : $i++ ?>
+                            <?php foreach ($products['data'] as $product) : $i++ ?>
                                 <tr>
                                     <td><?= $i; ?></td>
-                                    <td><img class="table-profile-image" src="assets/images/<?= $cake['image']; ?>" alt="<?= $cake['name']; ?>" /></td>
+                                    <td><img class="table-profile-image" src="src/assets/images/products/<?= $product['image']; ?>" alt="<?= $product['name']; ?>" /></td>
                                     <td>
-                                        <p><?= $cake['name']; ?></p>
+                                        <p class="capitalize"><?= $product['name']; ?></p>
                                     </td>
                                     <td>
                                         <p>
                                             Rp.
-                                            <?= number_format($cake['price']) ?>
+                                            <?= number_format($product['price']) ?>
                                         </p>
                                     </td>
                                     <td>
-                                        <p><?= $cake['stock']; ?></p>
+                                        <p><?= $product['stock']; ?></p>
                                     </td>
                                     <td>
                                         <div>
-                                            <button class="button button-icon btn-success" type="button"><i class="bi bi-pencil icon"></i></button>
-                                            <button class="button button-icon btn-warning" type="button"><i class="bi bi-trash icon"></i></button>
+                                            <a href="form.php?product_id=<?= $product['product_id']; ?>">
+                                                <button class="button button-icon btn-success" type="button"><i class="bi bi-pencil icon"></i></button>
+                                            </a>
+                                            <button class="button button-icon btn-warning" type="button" onclick="handleModal('#modal-delete-<?= $product['product_id']; ?>')"><i class="bi bi-trash icon"></i></button>
+                                            <?php include('./src/views/includes/modal-delete.php') ?>
                                         </div>
                                     </td>
                                 </tr>
+
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
-        <div class="container-modal">
-            <div class="wrap-modal">
-                <div class="modal">
-                    <p>Apakah anda yakin untuk logout?</p>
-                    <div>
-                        <button class="button button-modal btn-success" type="button" onclick="handleBatalLogout()">Batal</button>
-                        <a href="./sign-in.php"><button class="button button-modal btn-warning" type="button">Logout</button></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <?php include_once('./src/views/includes/modal-logout.php') ?>
     </main>
 </body>
 
-<script src="assets/js/script.js"></script>
+<script src="src/assets/js/script.js"></script>
 
 </html>
