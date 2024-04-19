@@ -200,15 +200,3 @@ class Product
         return $title;
     }
 }
-
-// header("Content-Type: application/json");
-// print_r(json_encode(Product::getByIdOrName(null, 'choco black forest')));
-
-// $data = array(
-//     "image" => "cake.png",
-//     "name" => "Hazelnut Cake",
-//     "price" => 16000,
-//     "stock" => 3,
-// );
-
-// Product::insert($data);
