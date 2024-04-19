@@ -23,7 +23,6 @@ if (isset($_POST['product'])) {
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>

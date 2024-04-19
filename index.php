@@ -80,6 +80,7 @@ $products = Product::getAll();
                                                 <button class="button button-icon btn-success" type="button"><i class="bi bi-pencil icon"></i></button>
                                             </a>
                                             <button class="button button-icon btn-warning" type="button" onclick="handleModal('#modal-delete-<?= $product['product_id']; ?>')"><i class="bi bi-trash icon"></i></button>
+
                                             <?php include('./src/views/includes/modal-delete.php') ?>
                                         </div>
                                     </td>
