@@ -72,11 +72,12 @@ function handleSidebar() {
   }
 
   let sidebarLogoDeactive = sidebarLogo.classList.contains('sidebar-content-deactivate');
+  console.log(container.style.paddingLeft);
 
   if (sidebarLogoDeactive) {
     sidebarLogo.style.display = 'none';
-    container.style.paddingLeft = '5%';
-    navigationContent.style.paddingLeft = '5%';
+    container.style.paddingLeft = '7%';
+    navigationContent.style.paddingLeft = '7%';
     for (let i = 0; i < sidebarContentList.length; i++) {
       sidebarContentList[i].style.justifyContent = 'center';
       sidebarContentList[i].style.padding = '1rem 0rem';

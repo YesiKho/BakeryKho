@@ -63,10 +63,7 @@ $products = Product::getAll();
                                     <td><?= $i; ?></td>
                                     <td><img class="table-profile-image" src="src/assets/images/products/<?= $product['image']; ?>" alt="<?= $product['name']; ?>" /></td>
                                     <td>
-                                        <<<<<<< HEAD <p class="capitalize"><?= $product['name']; ?></p>
-                                            =======
-                                            <p><?= $product['name']; ?></p>
-                                            >>>>>>> dec8ee320bcbfa91703e1c84a34031a6a7dad535
+                                        <p class="capitalize"><?= $product['name']; ?></p>
                                     </td>
                                     <td>
                                         <p>
