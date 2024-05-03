@@ -31,7 +31,6 @@ class Route
         if (!in_array($uri, self::$urls['routes'])) {
             header('Location: ' . BASEURL);
         }
-
         $call = self::$urls[$_SERVER['REQUEST_METHOD']][$uri];
         $call();
     }
@@ -59,28 +58,28 @@ class Route
             $url = '';
         }
 
-        self::$urls[strtoupper('GET')]['bakerykho/' . $url] = $controller . '::index';
-        self::$urls['routes'][] = 'bakerykho/' . $url;
+        self::$urls[strtoupper('GET')][$url] = $controller . '::index';
+        self::$urls['routes'][] =  $url;
         self::$urls['routes'] = array_unique(self::$urls['routes']);
 
-        self::$urls[strtoupper('GET')]['bakerykho/' . $url . '/create'] = $controller . '::create';
-        self::$urls['routes'][] = 'bakerykho/' . $url . '/create';
+        self::$urls[strtoupper('GET')][$url . '/create'] = $controller . '::create';
+        self::$urls['routes'][] =  $url . '/create';
         self::$urls['routes'] = array_unique(self::$urls['routes']);
 
-        self::$urls[strtoupper('POST')]['bakerykho/' . $url . '/store'] = $controller . '::store';
-        self::$urls['routes'][] = 'bakerykho/' . $url . '/store';
+        self::$urls[strtoupper('POST')][$url . '/store'] = $controller . '::store';
+        self::$urls['routes'][] =  $url . '/store';
         self::$urls['routes'] = array_unique(self::$urls['routes']);
 
-        self::$urls[strtoupper('GET')]['bakerykho/' . $url . '/edit'] = $controller . '::edit';
-        self::$urls['routes'][] = 'bakerykho/' . $url . '/edit';
+        self::$urls[strtoupper('GET')][$url . '/edit'] = $controller . '::edit';
+        self::$urls['routes'][] =  $url . '/edit';
         self::$urls['routes'] = array_unique(self::$urls['routes']);
 
-        self::$urls[strtoupper('POST')]['bakerykho/' . $url . '/update'] = $controller . '::update';
-        self::$urls['routes'][] = 'bakerykho/' . $url . '/update';
+        self::$urls[strtoupper('POST')][$url . '/update'] = $controller . '::update';
+        self::$urls['routes'][] =  $url . '/update';
         self::$urls['routes'] = array_unique(self::$urls['routes']);
 
-        self::$urls[strtoupper('GET')]['bakerykho/' . $url . '/destroy'] = $controller . '::destroy';
-        self::$urls['routes'][] = 'bakerykho/' . $url . '/destroy';
+        self::$urls[strtoupper('GET')][$url . '/destroy'] = $controller . '::destroy';
+        self::$urls['routes'][] =  $url . '/destroy';
         self::$urls['routes'] = array_unique(self::$urls['routes']);
     }
 }
