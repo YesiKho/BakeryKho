@@ -47,7 +47,7 @@ class Route
     public static function get($url, $controller)
     {
         if ($url == '/') {
-            $url = '';
+            $url = 'bakerykho';
         }
         self::$urls[strtoupper('GET')][$url] = $controller;
         self::$urls['routes'][] = $url;
