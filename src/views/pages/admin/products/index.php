@@ -37,7 +37,7 @@
                         <?php foreach ($products['data'] as $product) : $i++ ?>
                             <tr>
                                 <td><?= $i; ?></td>
-                                <td><img class="table-profile-image" src="/src/assets/images/products/<?= $product['image']; ?>" alt="<?= $product['name']; ?>" /></td>
+                                <td><img class="table-profile-image" src="src/assets/images/products/<?= $product['image']; ?>" alt="<?= $product['name']; ?>" /></td>
                                 <td>
                                     <p class="capitalize"><?= $product['name']; ?></p>
                                 </td>
