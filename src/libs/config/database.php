@@ -1,9 +1,10 @@
 <?php
+require_once('env.php');
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db_name = "bakerykho";
+$servername = $_ENV['DB_HOST'];
+$username = $_ENV['DB_USER'];
+$password = $_ENV['DB_PASS'];
+$db_name = $_ENV['DB_NAME'];
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password, $db_name);

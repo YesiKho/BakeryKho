@@ -4,7 +4,7 @@ require_once('src/libs/products.php');
 if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
     $title = 'update';
-    $res = Product::getByIdOrName($product_id);
+    $res = Product::getById($product_id);
 } else {
     $title = 'create';
     $product_id = null;
@@ -19,7 +19,7 @@ if (isset($_POST['product'])) {
     } elseif ($title == 'update') {
         $res = Product::update($_POST['product'], $product_id);
         if ($res['status'] == 200) {
-            header("refresh:2;url=index.php");
+            // header("refresh:2;url=index.php");
         }
     }
 }
@@ -68,11 +68,11 @@ if (isset($_POST['product'])) {
                         </div>
                         <div class="w-full flex flex-col items-start relative group/input">
                             <label for="price" id="label-price" class="absolute text-sage ml-2 mt-2 px-2 transition-all ease-in-out duration-500 bg-white group-focus-within/input:-translate-y-4 group-focus-within/input:text-sm">Price</label>
-                            <input type="number" class="w-full text-sm border rounded-lg border-sage px-4 py-3 outline-none" name="product[price]" id="price" value="<?= $product_id ? $res['data']['price'] : null; ?>" required>
+                            <input type="text" class="w-full text-sm border rounded-lg border-sage px-4 py-3 outline-none" name="product[price]" id="price" value="<?= $product_id ? $res['data']['price'] : null; ?>" required>
                         </div>
                         <div class="w-full flex flex-col items-start relative group/input">
                             <label for="stock" id="label-stock" class="absolute text-sage ml-2 mt-2 px-2 transition-all ease-in-out duration-500 bg-white group-focus-within/input:-translate-y-4 group-focus-within/input:text-sm ">Stock</label>
-                            <input type="number" class="w-full text-sm border rounded-lg border-sage px-4 py-3 outline-none" name="product[stock]" id="stock" value="<?= $product_id ? $res['data']['stock'] : null; ?>" required>
+                            <input type="text" class="w-full text-sm border rounded-lg border-sage px-4 py-3 outline-none" name="product[stock]" id="stock" value="<?= $product_id ? $res['data']['stock'] : null; ?>" required>
                         </div>
                     </div>
                     <div class="flex justify-end items-center gap-4">

@@ -1,6 +1,6 @@
 <?php
 
-require_once('database.php');
+require_once('src/libs/config/database.php');
 
 class Product
 {
@@ -22,10 +22,28 @@ class Product
         return $res;
     }
 
-    static function getByIdOrName($id = null, $name = null)
+    static function getByID($id = null)
     {
         global $conn;
-        $query = "SELECT * FROM products WHERE product_id ='$id' OR name = '$name' ";
+        $query = "SELECT * FROM products WHERE product_id ='$id'";
+        $result = $conn->query($query);
+
+        $res = array();
+
+        if ($result->num_rows > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $res['data'] = $row;
+            }
+            $res['status'] = http_response_code(200);
+        }
+
+        return $res;
+    }
+
+    static function getByName($name = null)
+    {
+        global $conn;
+        $query = "SELECT * FROM products WHERE name = '$name' ";
         $result = $conn->query($query);
 
         $res = array();
@@ -43,8 +61,9 @@ class Product
     static function insert($product)
     {
         global $conn;
+        print_r($product);
         $name = strtolower(htmlspecialchars($product['name']));
-        $product_exist = self::getByIdOrName(null, $name);
+        $product_exist = self::getByName($name);
         if ($product_exist) {
             return array('status' => 400, 'message' => 'Product ' . $name . ' sudah ada', 'data' => $product_exist['data']);
         }
@@ -85,7 +104,7 @@ class Product
             die($e->getMessage());
         }
         $sql->close();
-        $product_created = self::getByIdOrName(null, $name);
+        $product_created = self::getByName($name);
         return array('status' => 201, 'message' => 'Berhasil menambahkan product ' . $name, 'data' => $product_created['data']);
     }
 
@@ -93,7 +112,7 @@ class Product
     {
         global $conn;
 
-        $oldProduct = self::getByIdOrName($product_id, null);
+        $oldProduct = self::getById($product_id);
 
         $name = strtolower(htmlspecialchars($product['name']));
         $price = htmlspecialchars($product['price']);
@@ -139,7 +158,7 @@ class Product
             die($e->getMessage());
         }
         $sql->close();
-        $product_created = self::getByIdOrName($product_id, $name);
+        $product_created = self::getById($product_id);
         return array('status' => 200, 'message' => 'Berhasil memperbarui product ' . $name, 'data' => $product_created['data']);
     }
 
@@ -147,11 +166,11 @@ class Product
     {
         global $conn;
 
-        $product_exist = self::getByIdOrName($product_id, null);
+        $product_exist = self::getById($product_id);
         if ($product_exist) {
 
             $location = "src/assets/images/products/{$product_exist['data']['image']}";
-            if (file_exists($location)) {
+            if (file_exists($location) && $product_exist['data']['image'] !== 'cake.png') {
                 unlink("src/assets/images/products/{$product_exist['data']['image']}");
             }
 
@@ -169,7 +188,7 @@ class Product
                 die($e->getMessage());
             }
             $sql->close();
-            return array('status' => '201', "message" => "Berhasil menghapus product {$product_exist['data']['name']}");
+            return array('status' => '200', "message" => "Berhasil menghapus product {$product_exist['data']['name']}");
         }
         return array('status' => '400', "message" => 'Gagal menghapus product');
     }
