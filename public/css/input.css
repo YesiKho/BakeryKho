@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-sage;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-bistre;
+}
+
+body {
+  @apply font-poppins;
+}
+
+.sidebar {
+  @apply top-0 left-0 w-[20%] h-screen px-8 fixed flex flex-col justify-center items-center gap-10 overflow-hidden bg-linen transition-all ease-in-out duration-500 z-[99];
+}
+
+.sidebar-logo {
+  @apply flex flex-col justify-center items-center gap-4;
+}
+
+.sidebar-deactivate {
+  @apply w-[5%];
+}
+
+.admin-content-active {
+  @apply pl-[22%] pr-8;
+}
+
+/* ==== BUTTON ====  */
+.button {
+  @apply py-2 px-8 rounded-full;
+}
+
+.button-icon {
+  @apply p-2 rounded-md;
+}
+
+.button-primary {
+  @apply bg-sage/90 hover:bg-sage;
+}
+.button-secondary {
+  @apply bg-desertSand/90 hover:bg-desertSand;
+}
+
+.button-success {
+  @apply bg-success/90 hover:bg-success;
+}
+
+.button-warning {
+  @apply bg-warning/90 hover:bg-warning;
+}
+
+.button-info {
+  @apply bg-info/90 hover:bg-info;
+}
+
+.button-danger {
+  @apply bg-danger/90 hover:bg-danger;
+}
+
+.button-error {
+  @apply bg-error/90 hover:bg-error;
+}
+
+/* ======================== FLASH ======================== */
+
+.flash-primary {
+  @apply bg-sage/90 text-white;
+}
+.flash-secondary {
+  @apply bg-desertSand text-white;
+}
+
+.flash-success {
+  @apply bg-success text-white;
+}
+
+.flash-warning {
+  @apply bg-warning text-bistre;
+}
+
+.flash-info {
+  @apply bg-info text-white;
+}
+
+.flash-danger {
+  @apply bg-danger text-bistre;
+}
+
+.flash-error {
+  @apply bg-error text-bistre;
+}
+
+/* ======================== FORM ======================== */
+
+.main-authentication {
+  @apply w-screen h-screen flex justify-center items-center relative;
+}
+
+.container-form {
+  @apply flex justify-center items-center border border-sage rounded-xl p-8;
+}
+
+.authentication {
+  @apply flex flex-col flex-wrap p-4 gap-4;
+}
+
+.authentication-title {
+  @apply flex flex-col gap-2;
+}
+
+.authentication-title .heading-title {
+  @apply text-3xl font-semibold text-cardinal;
+}
+
+.authentication-title .sub-heading-title {
+  @apply font-medium text-buff;
+}
+
+.authentication-title .sub-heading-title b {
+  @apply text-cardinal;
+}
+
+.authentication-form-container {
+  @apply flex flex-col gap-4;
+}
+
+.authentication-form {
+  @apply flex flex-col gap-1;
+}
+
+.authentication .text-authentication a {
+  @apply font-medium text-primary hover:text-sage;
+}
+
+.form-group input,
+.form-group input:focus {
+  @apply w-full px-4 py-1 border-b-2 border-sage box-border outline-none;
+}
+
+.form-group-wrap {
+  @apply grid grid-cols-2 gap-8;
+}
+.image-form {
+  @apply px-4;
+}
+
+.image-form img {
+  @apply w-[400px];
+}
+
+/* ==== MODAL ====  */
+.container-modal {
+  @apply w-screen h-screen fixed top-0 left-0 bg-black/30 z-[100];
+}
+
+.wrap-modal {
+  @apply w-screen h-screen flex justify-center items-center fixed top-0 left-0 z-[101];
+}
+
+.modal {
+  @apply fixed min-w-[30rem] max-h-[35rem] min-h-40 flex flex-col justify-center text-center py-10 px-8 bg-white rounded-lg shadow-md;
+}
+
+.modal-header {
+  @apply pb-4 border-b border-b-sage;
+}
+
+.modal-body {
+  @apply min-h-10 my-8 flex flex-col;
+}

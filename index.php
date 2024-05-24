@@ -1,1 +1,3 @@
-<?php include_once 'src/routes/web.php';
+<?php
+session_start();
+require_once 'routes/web.php';

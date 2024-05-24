@@ -1,6 +1,6 @@
 RewriteEngine On
-RewriteBase /bakerykho/
+RewriteBase /bakerykho-MVC/
 RewriteRule ^index\\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /bakerykho/index.php [L]
+RewriteRule . /bakerykho-MVC/index.php [L]
